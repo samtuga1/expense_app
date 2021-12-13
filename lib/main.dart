@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'loading_page.dart';
+import 'home_screen.dart';
 
 void main() {
-  runApp(const MaterialApp(
-    home: LoadingPage(),
-  ));
+  runApp(MaterialApp(home: const LoadingPage(), routes: {
+    HomeScreen.id: (context) => const HomeScreen(),
+  }));
 }

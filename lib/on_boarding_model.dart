@@ -9,7 +9,7 @@ class OnBoardingModel {
             'Easily figure out how you can save your money for the future',
         titleColor: Colors.black,
         descripColor: const Color(0xFF929794),
-        imagePath: 'assets/images/savePhoto.jpg'),
+        imagePath: 'assets/images/savePhoto.png'),
     SkOnboardingModel(
         title: 'Keep track of how you spend',
         description: 'We give you insights of how you spend your money daily',
@@ -21,6 +21,6 @@ class OnBoardingModel {
         description: 'Learn how to set a budget to avoid bankruptcy',
         titleColor: Colors.black,
         descripColor: const Color(0xFF929794),
-        imagePath: 'assets/images/brokePhoto.jpg'),
+        imagePath: 'assets/images/brokePhoto.png'),
   ];
 }

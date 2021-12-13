@@ -1,3 +1,4 @@
+import 'package:expense_app/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:sk_onboarding_screen/sk_onboarding_screen.dart';
 import 'on_boarding_model.dart';
@@ -18,10 +19,10 @@ class _LoadingPageState extends State<LoadingPage> {
         themeColor: const Color(0xFFf74269),
         pages: OnBoardingModel().pages,
         skipClicked: (value) {
-          print("Skip");
+          Navigator.pushNamed(context, HomeScreen.id);
         },
         getStartedClicked: (value) {
-          print("Get Started");
+          Navigator.pushNamed(context, HomeScreen.id);
         },
       ),
     );
