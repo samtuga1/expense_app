@@ -21,7 +21,7 @@ class CardBanner extends StatelessWidget {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
         leading: Container(
           padding: const EdgeInsets.all(9),
-          child: Text('\$' + price),
+          child: Text('\$$price'),
           decoration: BoxDecoration(
             border: Border.all(color: Colors.purple),
           ),
