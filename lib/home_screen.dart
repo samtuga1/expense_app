@@ -1,5 +1,7 @@
+import 'package:expense_app/card_banner.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class HomeScreen extends StatefulWidget {
   static String id = 'home_screen';
@@ -12,9 +14,81 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    itemTextController.dispose();
+    dayTextController.dispose();
+    amountTextController.dispose();
+    super.dispose();
+  }
+
+  List<CardBanner> getCards = [];
+  final itemTextController = TextEditingController();
+  final dayTextController = TextEditingController();
+  final amountTextController = TextEditingController();
+
+  popUpAlert() {
+    Alert(
+        context: context,
+        title: "Add The Following",
+        content: Column(
+          children: <Widget>[
+            TextField(
+              controller: itemTextController,
+              decoration: const InputDecoration(
+                labelText: 'Item bought',
+              ),
+            ),
+            TextField(
+              controller: dayTextController,
+              decoration: const InputDecoration(
+                labelText: 'Day',
+              ),
+            ),
+            TextField(
+              controller: amountTextController,
+              decoration: const InputDecoration(
+                labelText: 'Amount Spent',
+              ),
+            ),
+          ],
+        ),
+        buttons: [
+          DialogButton(
+            onPressed: () => setState(() {
+              getCards.add(CardBanner(
+                price: amountTextController.text,
+                itemBought: itemTextController.text,
+                day: dayTextController.text,
+              ));
+              Navigator.pop(context);
+            }),
+            child: const Text(
+              "Add",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+          )
+        ]).show();
+  }
+
+  generateCards() {
+    return Column(
+      children: getCards,
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.add),
+          onPressed: () {
+            setState(() {
+              popUpAlert();
+            });
+          }),
       appBar: AppBar(
+        leading: null,
         backgroundColor: Colors.purple,
         title: const Text(
           'Expenses',
@@ -24,48 +98,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            children: const [
-              CardBanner(
-                price: 10.50,
-                itemBought: 'Shoes',
-              ),
-            ],
-          ),
+          child: generateCards(),
         ),
-      ),
-    );
-  }
-}
-
-class CardBanner extends StatelessWidget {
-  final double price;
-  final String itemBought;
-
-  const CardBanner({
-    Key? key,
-    required this.price,
-    required this.itemBought,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: ListTile(
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-        leading: Container(
-          padding: const EdgeInsets.all(9),
-          child: Text('\$$price'),
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.purple),
-          ),
-        ),
-        title: Text(itemBought),
-        subtitle: Text(
-            '${DateTime.now().month.toString()}/${DateTime.now().day.toString()}/${DateTime.now().year.toString()}'),
-        trailing: const Icon(Icons.delete),
       ),
     );
   }
