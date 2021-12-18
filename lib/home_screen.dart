@@ -81,6 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.purple,
           child: const Icon(Icons.add),
           onPressed: () {
             setState(() {
@@ -97,8 +98,32 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true,
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: generateCards(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SingleChildScrollView(
+              child: generateCards(),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  child: const Center(
+                      child: Text(
+                    'Calculate',
+                    style: TextStyle(fontSize: 18, color: Colors.white),
+                  )),
+                  margin: const EdgeInsets.only(bottom: 15),
+                  decoration: BoxDecoration(
+                    color: Colors.purple,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  width: 140,
+                  height: 50,
+                ),
+              ],
+            )
+          ],
         ),
       ),
     );
