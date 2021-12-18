@@ -14,4 +14,4 @@ This app allows a user to calculate the total spending he had made so far
 
 You just have to click on calculate
 
-![Screenshot_1639843190](https://user-images.githubusercontent.com/79772304/146647746-a295ace9-5f92-40b4-b19b-0516eb632870.png)
+![Screenshot_1639844037](https://user-images.githubusercontent.com/79772304/146648002-c5152280-9fe8-4b04-9d92-82746622ce50.png)
